@@ -175,9 +175,9 @@ We should include a few caveats. First, masking memory access bits for a stage t
 stage doesn't actually use doesn't make a lot of sense. For example, defining a memory
 barrier that waits for all shader writes from late fragment tests stage is odd because
 no shader invocation happens in that pipeline stage whatsover. Furthermore, it doesn't make
-sense to place a barrier between two stages, where the source stage happens _after_ the
-destination stage in the pipeline. Third, it doesn't make sense to mask access bits
-that correspond to reads (e.g. `eShaderRead`) in the source access mask. Reading from
+sense to place a barrier between two stages within a render pass where the source stage 
+happens _after_ the destination stage in the pipeline. Third, it doesn't make sense 
+to mask access bits that correspond to reads (e.g. `eShaderRead`) in the source access mask. Reading from
 memory from different stages without a write issued in between is well-defined and requires
 no barrier. Last, the scopes defined by a pipeline barrier refer to commands submitted
 _prior_ to the barrier and commands submitted after. Thus, in the above example, if you
