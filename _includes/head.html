@@ -52,6 +52,16 @@
   <link rel="icon" type="image/png" href="{{ '/favicon-32x32.png' | relative_url }}' sizes=" 32x32">
   <link rel="shortcut icon" href="{{ '/favicon.ico' | relative_url }}">
 
+  <script>
+    if (window.navigator && navigator.serviceWorker) {
+      navigator.serviceWorker.getRegistrations()
+        .then(function (registrations) {
+          for (let registration of registrations) {
+            registration.unregister();
+          }
+        });
+    }
+  </script>
   {% if site.google_analytics %}
   <script async type="text/javascript">
     (function (i, s, o, g, r, a, m) {
