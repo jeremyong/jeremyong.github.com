@@ -3,7 +3,7 @@ layout: post
 title: 'C++20 Coroutines: sketching minimal async framework'
 subtitle: Lambdas? pfft.
 categories:
-  - math
+  - cpp
 ---
 
 C++20 ✨coroutines✨ are here! Having spent some 20-odd hours with it, I am by no means an expert on the feature,
