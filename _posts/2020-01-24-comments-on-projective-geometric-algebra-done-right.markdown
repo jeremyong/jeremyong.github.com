@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 'Comments on "Projective Geometric Algebra Done Right"'
+published: false
 categories:
   - math
 ---

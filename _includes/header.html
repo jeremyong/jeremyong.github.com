@@ -1,14 +1,33 @@
-<header class="site-header px2 px-responsive">
-  <div class="mt2 wrap">
-    <div class="measure">
-      <a href="{{ "/" | relative_url }}" class="site-title">{{ site.title }}</a>
-      <nav class="site-nav">
-        {% include navigation.html %}
-      </nav>
-      <div class="clearfix"></div>
-      {% if site.show_social_icons %}
-        {% include social_links.html %}
+<nav class="nav">
+  {% assign default_paths = site.pages | map: "path" %}
+  {% assign page_paths = site.header_pages | default: default_paths %}
+
+  <ul class="wrap">
+    <li>
+      <a href="{{ '/' | relative_url }}" class="site-title">Home</a>
+    </li>
+    {% for path in page_paths %}
+
+    {% assign item = site.pages | where: "path", path | first %}
+
+    <li>
+      {% if item.title and page.title == item.title %}
+      <a class="nav-active" href="{{ item.url | relative_url }}">{{ item.title }}</a>
+      {% elsif item.title %}
+      <a href="{{ item.url | relative_url }}">{{ item.title }}</a>
       {% endif %}
-    </div>
-  </div>
-</header>
+    </li>
+
+
+    {% endfor %}
+    <li>
+      <a class="fa fa-github" href="https://github.com/{{ site.github_username }}"></a>
+    </li>
+    <li>
+      <a class="fa fa-twitter" href="https://twitter.com/{{ site.twitter_username }}"></a>
+    </li>
+    <li>
+      <a class="fa fa-linkedin" href="https://www.linkedin.com/in/{{ site.linkedin_username }}"></a>
+    </li>
+  </ul>
+</nav>
