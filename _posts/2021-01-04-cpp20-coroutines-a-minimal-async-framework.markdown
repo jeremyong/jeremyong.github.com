@@ -436,6 +436,22 @@ on the `task` type, then set it in the task's `final_suspend` method for example
 In my codebase, this is referred to as a `jtask` (short for "joinable task") and it is
 otherwise identical to the task above except for this additional signaling behavior.
 
+## Some implementation details I glossed over
+
+- You can override `operator new` and `operator delete` to manage allocations of your task
+  types yourself. Note that I don't believe these are guaranteed to be called if the compiler
+  can elide the allocation altogether, so don't implement these overrides with visible side-effects
+- When suspending a coroutine, remember to ensure that pointers and references used in the
+  body of the coroutine must have a valid lifetime extended until the coroutine exits. This
+  is "obvious" but potentially is a pitfall (similar to capturing pointers and references in a lambda)
+- If doing this implementation yourself, you can also apply a similar pattern in how we handled
+  continuations and suspensions here to handle `co_yield` expressions.
+- You will likely need a `task<void>` specialization in order to handle coroutines that execute
+  but don't return anything
+- My own code has additional state in the `task` type to handle things like tracking history
+  and file and line information (simplifies debugging). Also, the code is instrumented to support
+  labels in profiling tools like Pix.
+
 ## Conclusion
 
 C++20 coroutines are undoutedly powerful. I didn't go into all the compiler optimizations
