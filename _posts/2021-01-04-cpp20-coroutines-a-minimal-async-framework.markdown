@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'C++20 Coroutines: sketching minimal async framework'
+title: 'C++20 Coroutines: sketching a minimal async framework'
 subtitle: Lambdas? pfft.
 categories:
   - cpp
