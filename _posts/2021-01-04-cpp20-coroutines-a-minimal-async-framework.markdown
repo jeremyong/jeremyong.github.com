@@ -213,6 +213,16 @@ struct event_awaiter {
 };
 ```
 
+To make our event `HANDLE` a valid argument to the `co_await` operator, we also need to add
+an overload for returning the `event_awaiter` defined above.
+
+```cpp
+inline event_awaiter operator co_await(HANDLE event) noexcept
+{
+  return {event};
+}
+```
+
 Now, we can do something like the following:
 
 ```cpp
