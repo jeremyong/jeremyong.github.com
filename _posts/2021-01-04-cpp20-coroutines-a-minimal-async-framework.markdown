@@ -415,7 +415,7 @@ task<int> another_async_routine() {
   do_something_else();
 
   // Resume points work in the middle of expressions as well
-  co_return (r1 + (co_await t2) + (co_await t3));
+  co_return ((co_await t1) + r2 + (co_await t3));
 }
 ```
 
