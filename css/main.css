@@ -6,6 +6,7 @@ html {
 
 body {
     margin: 0;
+    padding-bottom: 40px;
 }
 
 a { 
@@ -92,11 +93,11 @@ h1 { line-height: 1.2em; }
     border-top: 1px solid rgba(0, 0, 0, .2);
     border-bottom: 1px solid rgba(0, 0, 0, .2);
     padding: 20px 0;
+    text-align: center;
 }
 
 .article .figure .caption {
     padding-top: 15px;
-    display: inline-block;
     font-size: 13px;
     line-height: 1.2em;
 }
@@ -803,28 +804,31 @@ hr {
   margin-bottom: 16px;
 }
 
-.markdown-body table {
+table {
   display: block;
   width: 100%;
   overflow: auto;
 }
 
-.markdown-body table th {
-  font-weight: bold;
+th {
+  font-size: large;
 }
 
-.markdown-body table th,
-.markdown-body table td {
+th, td {
   padding: 6px 13px;
   border: 1px solid #ddd;
 }
 
-.markdown-body table tr {
+tr {
   background-color: #fff;
   border-top: 1px solid #ccc;
 }
 
-.markdown-body table tr:nth-child(2n) {
+td:first-child {
+  font-weight: bold;
+}
+
+tr:nth-child(2n) {
   background-color: #f8f8f8;
 }
 

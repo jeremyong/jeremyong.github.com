@@ -14,3 +14,7 @@ group :jekyll_plugins do
     gem 'jekyll-katex'
     gem 'jekyll-redirect-from'
 end
+
+gem "rake", "~> 13.0"
+
+gem "webrick", "~> 1.7"
