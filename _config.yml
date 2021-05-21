@@ -18,7 +18,6 @@ show_related_posts: true
 show_post_footers: true
 show_social_icons: true
 ajaxify_contact_form: true
-enable_katex: true
 
 # Social icons
 github_username: jeremyong
@@ -39,7 +38,6 @@ sass:
 plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
-  - jekyll-katex
   - jekyll-scholar
   - jekyll-feed
 # https://github.com/jekyll/jekyll/issues/2938

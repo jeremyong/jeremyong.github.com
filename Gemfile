@@ -11,7 +11,6 @@ group :jekyll_plugins do
     gem 'jekyll-sitemap'
     gem 'jekyll-feed'
     gem 'github-pages'
-    gem 'jekyll-katex'
     gem 'jekyll-redirect-from'
 end
 

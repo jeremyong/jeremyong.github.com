@@ -2,14 +2,13 @@
 layout: post
 title: 'C++ Neural Network in a Weekend'
 subtitle: Zero Dependencies 💪
+katex: true
 categories:
   - cpp
   - machine-learning
 ---
 
 *Content mirrored from the [Github repository](https://github.com/jeremyong/cpp_nn_in_a_weekend)*
-
-{% katexmm %}
 
 ## Introduction
 
@@ -1801,5 +1800,3 @@ in this case with an emphasis on object detection.
 |*Standard notations for Deep Learning* ([link](https://cs230.stanford.edu/files/Notation.pdf))|Stanford CS230 Course Notes|Cheatsheet covering standard notation used by many texts and papers|
 |*Neural Networks and Deep Learning* ([link](http://neuralnetworksanddeeplearning.com/index.html))|Michael Nielsen|A gentler introduction to the theory and practice of neural networks|
 |*Automatic Differentiation in Machine Learning: a Survey* ([link](https://arxiv.org/pdf/1502.05767.pdf))|Atılım Güneş Baydin, Barak A. Pearlmutter, Alexey Andreyevich Radul, Jeffrey Mark Siskind|Excellent survey paper documentating the various algorithms used for computational differentiation including viable alternatives to backpropagation|
-
-{% endkatexmm %}
