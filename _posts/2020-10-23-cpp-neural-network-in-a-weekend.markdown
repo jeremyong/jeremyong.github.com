@@ -1188,7 +1188,11 @@ Given that information, we need to perform the following tasks:
 4. Propagate all the loss gradients with respect to the inputs in step 3 back to the antecedent nodes
 
 As all outputs pass through an activation function, we will need
-to compute $\partial J_{CE}/\partial g(\mathbf{z})_i$ where $g$ is one of the linear rectifier or softmax function
+to compute
+
+$$\frac{\partial J_{CE}}{\partial g(\mathbf{z})_i}$$
+
+where $g$ is one of the linear rectifier or softmax function
 corresponding to a particular component of the output vector.
 Both derivatives are computed in the background section, so we'll just recite the results here.
 For the linear rectifier, $\partial J_{CE}/\partial g(\mathbf{z})_i$ will simply be 1 if $a_i \neq 0$,
