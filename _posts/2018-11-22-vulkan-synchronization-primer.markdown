@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Vulkan Synchronization Primer - Part I
+katex: true
 categories:
   - vulkan
   - graphics
