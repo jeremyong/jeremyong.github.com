@@ -6,7 +6,7 @@ categories:
   - cpp
 ---
 
-When I first started "graphics programming," I thought about pixels and scanlines first, and later graduated to
+When I first started graphics programming, I thought about pixels and scanlines first, and later graduated to
 happily shading 3D geometry via vertex and fragment shaders (circa OpenGL 2.0 and DirectX9 days). It didn't take
 us long, however, to grow to a veritable zoo of available techniques. You have forward and deferred, variants of
 each (tiled, tiled deferred, clustered, clustered deferred), sub-variants like deferred texturing, visibility buffers, and the list
