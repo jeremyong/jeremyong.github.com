@@ -184,6 +184,10 @@ so much as speeding up your frame though, so be wary of architecting strictly to
 of your mind. If you profile your app, find large bubbles at a point where the pass is dominated by memory bandwidth for example, you
 can potentially optimize the inefficiency by scheduling other less bandwidth-intensive work at the same time.
 
+Another way in which hardware can be poorly utilized is when quads are dispatched by the hardware rasterizer. Each shaded fragment that
+needs finite-difference gradients for sampling needs "helper lane" threads to be scheduled. GPU compute units can only accommodate a certain
+number of thread groups at a time (warps or wavefronts), so thread utilization is another metric to watch out for.
+
 ## Z-Prepass Revisited
 
 Let's stop and think through a mental exercise for a moment. What are the costs associated with using a Z-Prepass?
