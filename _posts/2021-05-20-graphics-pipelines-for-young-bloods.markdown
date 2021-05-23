@@ -241,7 +241,7 @@ which is loop restructuring.
 
 Let's clarify the triangle pipeline in terms of the how all the objects in a scene are drawn collectively as opposed to a single triangle.
 
-<pre>
+<pre style="overflow-x: auto">
     For all objects in the scene
         For all triangles per object
         |   For all shadow-casting light views
