@@ -12,13 +12,11 @@ layout: default
         {{ post.date | date: "%b %-d, %Y" }}
       </p>
     </div>
+    {% if post.summary %}
     <p class="post-subtitle">
-      {% if post.summary %}
       {{ post.summary }}
-      {% else %}
-      {{ post.excerpt }}
-      {% endif %}
     </p>
+    {% endif %}
   </div>
   {% endfor %}
 </div>
