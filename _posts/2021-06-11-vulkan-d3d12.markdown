@@ -1,0 +1,26 @@
+---
+layout: post
+title: 'Vulkan and D3D12 Abstraction Layer'
+subtitle: Things to be aware of before starting
+published: false
+categories:
+  - graphics
+---
+
+The content of this post is adapted from a [Twitter thread](https://twitter.com/m_ninepoints/status/1326203569335267331)
+I posted a while back.
+
+## D3D12 and Vulkan Rendering Backends
+
+The renderer I experiment with on my own time supports both D3D12 and Vulkan.
+A question I'm often asked is: "why bother?" For me, I maintain both for the following reasons:
+
+- Needing to maintain an abstraction layer forces me to consider architectural concerns that would come up in a production engine
+- D3D12 and Vulkan both have important distinctions that impose design choices you might otherwise ignore choosing one over the other
+- Sometimes, a particular hardware/driver feature is exposed in one API earlier than the other
+- Having two backend implementations lets you A/B compare results in the event of driver/software bugs
+
+In terms of *how* to go about doing this though, there are certain differences between the APIs to be aware of.
+
+## Typed vs Untyped descriptors
+

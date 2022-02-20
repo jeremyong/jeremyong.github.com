@@ -836,7 +836,8 @@ img {
 }
 
 .katex-display {
-  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
 }
 
 .markdown-body code {

@@ -7,7 +7,6 @@ categories:
   - parsers
   - HLSL
   - AZSL
-summary: Prototyping an intellisense framework for a shader language, for science
 ---
 
 Just prior to the new year, I spent a couple days prototyping a quick-and-dirty implementation of Intellisense for AZSL.
