@@ -14,7 +14,7 @@ katex: true
 
 The past couple weekends, I took some time to implement an image delta viewer I am calling "FLOP" as an homage to the paper its implementation is based on ([FLIP](https://research.nvidia.com/publication/2020-07_FLIP)).
 
-In this short post, I'll describe the algorithm, and some of the background needed to understand the technique. I'll also quickly discussion the compute-based implementation, and close off with some thoughts on future direction.
+In this short post, I'll describe the algorithm, and some of the background needed to understand the technique. I'll also quickly discuss the compute-based implementation, and close off with some thoughts on future direction.
 
 ## The Problem Statement
 
@@ -93,7 +93,7 @@ the NVIDIA researches and provided for us. This filtering explains why Lab is pr
 linearly (same problem as trying to blend sRGB values that have been gamma-transferred).
 
 After filtering, we adjust the chrominance values depending on the lightness coordinate to account for the Hunt effect. Essentially, the transformation amounts to scaling the a and b coordinates by
-a L with the appropriate normalization. This produces our "Hunt-adjusted" color values (still in linearized CIELAB space) that we can compute the difference between. The metric used in this step
+a L with the appropriate normalization. This produces our "Hunt-adjusted" color values (in CIELAB L\*a\*b\* space now instead or the lineared space) that we can compute the difference between. The metric used in this step
 is the HyAB distance, given below:
 
 $$\Delta_{HyAB}(C, C') = \left|C_L - C'_L\right| + \sqrt{(C_a - C'_a)^2 + (C_b - C'_b)^2}$$
