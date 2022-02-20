@@ -7,6 +7,8 @@ categories:
 katex: true
 ---
 
+*All code implemented for this post is provided under MIT-license [here](https://github.com/jeremyong/flop.git).*
+
 <img src="/images/flop/1.png" />
 <br />
 
@@ -116,7 +118,7 @@ filtered in accordance to the actual resolution and sensitivies of a typical eye
 ### Putting it all together
 
 The final step is to _amplify_ color differences based on features we detect. This way, we account for both effects and summarize the combination in a nice $[0, 1]$ quantity.
-The approach take by FLIP is to raise the color difference to one-minus-the-feature-difference. That is, a complete absense of a feature leaves the color difference unperturbed.
+The approach take by FLIP is to raise the color difference to one-minus-the-feature-difference. That is, a complete absence of a feature leaves the color difference unperturbed.
 A saturated feature pushes the combined error to $1$.
 
 ## Implementation
