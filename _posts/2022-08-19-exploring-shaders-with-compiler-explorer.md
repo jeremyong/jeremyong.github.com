@@ -228,9 +228,9 @@ Here, the same shader as before is compiled but targeting a Vega GPU instead. If
 ## Active Bugs and Future Areas of Improvement
 
 There is an issue currently where the assembly lines emitted by `shae` for the register lifetime
-don't actually match the assembly emitted by `rga`. This is (from what I can tell) because `shae` consolidates
-some lines that it shouldn't (it doesn't treat `label` statements as having their own lines) so the
-`shae` output emitted as interspersed comments will go out-of-sync with the disassembly itself. This
+don't actually match the assembly emitted by `rga`. This is because `shae` operates on instructions,
+but labels themselves don't constitute instructions. As a result, `shae` infers its own labels and
+its output emitted as interspersed comments will go out-of-sync with the disassembly itself. This
 is something that will be fixed upstream in a future RGA release.
 
 Also, CE doesn't yet have a mechanism to populate the user supplied options with defaults, in particular
