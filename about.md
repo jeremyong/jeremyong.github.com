@@ -4,10 +4,8 @@ title: About
 permalink: /about/
 ---
 
-Hi. I'm a systems programmer with a particular bent on graphics and low-level programming. C++ is my primary
+Hi. I'm a graphics programmer but with broader generalist capabilities also. C++ is my primary
 programming language, but I'm relatively language agnostic (except for a few languages on my naughty list).
-Outside of graphics and performance work, I dabble a good deal with *most* other disciplines, priority
-sorted based on interest. In particular, compilers/optimizers, networking, compression, security, and AI.
 
 I post sporadically, but feedback and/or corrections on my content is always appreciated (see link badges
 at the top to find me on twitter/linkedin/etc).
