@@ -25,6 +25,10 @@ will explain some of its quirks, in particular when using the RGA backend. On a 
 also has a few usage notes/tips to get the most out of the integration so you can use CE for your own shader
 exploration.
 
+TL;DR Go try it out! [Here's](https://godbolt.org/z/bfxnPj4fd) a link to a sample to get you started (from
+MSFT's DirectX wave intrinsics sample). Alternatively, for a much smaller example to iterate from, you can
+try [this](https://godbolt.org/z/EdGbPqr3E) short pixel shader to start.
+
 ## Developer Environment Setup
 
 Building on top of CE is surprisingly straightforward, owing largely to its excellent [documentation](https://github.com/compiler-explorer/compiler-explorer/tree/main/docs).
