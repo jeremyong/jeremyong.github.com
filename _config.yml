@@ -1,8 +1,8 @@
 # Site settings
-title: ninepoints
+title: Jeremy's Blog
 email: jeremycong@gmail.com
 author: Jeremy Ong
-description: 'C++, graphics, deep learning, multithreading, Vulkan, OpenGL, DirectX, Math, compilers, and more'
+description: 'C++, graphics, Vulkan, DirectX, Math, compilers, and more'
 baseurl: ''
 url: 'https://jeremyong.com'
 date_format: '%b %-d, %Y'
