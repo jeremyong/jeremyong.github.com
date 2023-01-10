@@ -110,7 +110,8 @@ $$
 Here, $T'$ is what I'm calling the "canonical direction" in the tangent plane. It's trivial to check
 that both cases are orthogonal to $N$. The conditions ensure that we pick reasonable directions that
 avoid any singularities as well. Determining the angle between $T$ and $T'$ is then just an exercise
-in trigonometry: $\theta = \arccos\left({T\cdot T'}\right)$. Note that we can choose the canonical
+in trigonometry by taking `atan2` of the projection and rejection of $T$ onto and off $T'$ (thanks Nathan
+Reed for the correction here from the original text). Note that we can choose the canonical
 direction in an infinite number of ways (albeit far fewer sensible ways), but I'm just reproducing the
 top approach for consistency.
 
