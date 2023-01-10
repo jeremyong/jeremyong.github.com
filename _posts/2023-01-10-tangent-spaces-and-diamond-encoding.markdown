@@ -31,10 +31,10 @@ should be orthogonal to that tangent plane (aka the normal).
 
 We'd like to represent the artist-authored tangent space at each vertex in as compact a representation
 as is reasonable, without sacrificing too much precision, and without incurring too much ALU cost during
-decode. Smaller vertex footprints means we less GPU memory traffic, more space for more triangles, and
+decode. Smaller vertex footprints means less GPU memory traffic, more space for more triangles, and
 ultimately shipped content with higher fidelity.
 
-Assuming the normal vector is provided at each vertex, at this point, we still have a couple
+Assuming the normal vector is provided at each vertex, we still have a couple
 degrees of freedom. First, we haven't stipulated that $T$ and $B$ be orthogonal, and further,
 we haven't actually placed them on the tangent plane yet. By convention, we point $T$ in the direction
 where the first texture coordinate changes the most rapidly, and $B$ in the direction where the second
@@ -43,6 +43,10 @@ form an orthonormal basis (henceforth abbreviated "TBN"), and not accounting for
 doesn't result in objectionable artifacts. This means we can immediately drop $B$ from our
 representation - except that we don't know the handedness of the basis yet. Usually, a bit is
 reserved to indicate if the tangent basis is mirrored or not, but we will revisit this later.
+
+As an aside, some content will require non-orthogonal and non-unit tangents and bitangents. These
+requirements can be met with a few adjustments which we'll discuss later, but for now, assume that
+$T$, $B$, and $N$ are all mutually orthogonal and unit-length.
 
 Currently, our encoding has gone from 9 floats, to 6 floats and a single bit for the orientation.
 The next thing to consider is encoding the normal.
@@ -254,6 +258,11 @@ float3 decode_tangent(float3 normal, float diamond_tangent)
 Overall, encoding and decoding is very fast, and while the distribution isn't as good as the
 perfectly uniform angle distribution, this choice may be appropriate in some use cases (and
 the quality is quite good so far in my testing, although I don't have rigorous results yet).
+
+If you're reading this post so far and are thinking, "but my tangents and bitangents aren't unit-length and orthogonal,"
+you will need to augment your payload with the lengths of $T$ and $B$ (likely quantized also),
+and instead of dropping $B$ entirely, you could encode its angle or diamond map in the same way
+we encoded $T$ above. In that sense, all these techniques are fairly general.
 
 ## What about the orientation bit?
 
