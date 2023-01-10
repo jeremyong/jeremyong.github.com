@@ -291,10 +291,13 @@ In short, I recommend dropping the orientation bit altogether, given that times 
 in terms of how content is authored. As a compromise, it's possible to store the orientation
 bit per-meshlet, or at some other frequency.
 
+![Final](/images/diamond/final_tbn.excalidraw.png)
+
 ## Summary
 
 This was a quick overview of various common and less common schemes for encoding tangent space
 data with your vertices. There's plenty of other bits I didn't cover, like choosing how to
 quantize values based on mesh bounding boxes, or packing texture coordinates where possible by
-tracking the maximum and minimum values used on import. That will all have to be for another
-day!
+tracking the maximum and minimum values used on import. Other ideas to consider include more
+aggressive quantization possible when using meshlets by exploiting local surface similarity.
+That will all have to be for another day!
