@@ -107,21 +107,21 @@ T' =
 \end{aligned}
 $$
 
-Here, $T'$ is what I'm calling the "canonical direction" in the tangent plane. It's trivial to check
+Here, $T^\prime$ is what I'm calling the "canonical direction" in the tangent plane. It's trivial to check
 that both cases are orthogonal to $N$. The conditions ensure that we pick reasonable directions that
-avoid any singularities as well. Determining the angle between $T$ and $T'$ is then just an exercise
-in trigonometry by taking `atan2` of the projection and rejection of $T$ onto and off $T'$ (thanks Nathan
+avoid any singularities as well. Determining the angle between $T$ and $T^\prime$ is then just an exercise
+in trigonometry by taking `atan2` of the projection and rejection of $T$ onto and off $T^\prime$ (thanks Nathan
 Reed for the correction here from the original text). Note that we can choose the canonical
 direction in an infinite number of ways (albeit far fewer sensible ways), but I'm just reproducing the
 top approach for consistency.
 
-To reconstruct $T$ given $N$ and $\theta$, we need to determine $T'$ using the same method as above,
-and then rotate $\theta$ radians about $N$ from $T'$ using the [Rodrigues rotation formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula).
-As pointed out by the the DOOM presentation, the formula simplifies a bit since $T'$ and $N$ are
+To reconstruct $T$ given $N$ and $\theta$, we need to determine $T^\prime$ using the same method as above,
+and then rotate $\theta$ radians about $N$ from $T^\prime$ using the [Rodrigues rotation formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula).
+As pointed out by the the DOOM presentation, the formula simplifies a bit since $T^\prime$ and $N$ are
 orthogonal. The reconstructed $T$ is computed as:
 
 $$
-T = T'\cos\theta + \left(N \times T'\right)\sin\theta
+T = T^\prime\cos\theta + \left(N \times T^\prime\right)\sin\theta
 $$
 
 The angle itself can of course be quantized to a unorm (remember to scale by $2\pi$ later), so we've
@@ -159,9 +159,9 @@ just a 2D analogue of the octahedral mapping, but that means it's fairly straigh
 and implement.
 
 Decoding the diamond map is very similar to the angle-based encoding. As before, we find a canonical
-direction $T'$ somewhere in the tangent plane. Next, we use $T' \times N$ to construct another vector
-I'll simply call $T''$. Together, $T'$ and $T''$ span the tangent plane, and it is the coordinates of $T$
-with respect to this basis of $T'$ and $T''$ that we encode and decode. Once the projection is reversed
+direction $T^\prime$ somewhere in the tangent plane. Next, we use $T^\prime \times N$ to construct another vector
+I'll simply call $T^{\prime\prime}$. Together, $T^\prime$ and $T^{\prime\prime}$ span the tangent plane, and it is the coordinates of $T$
+with respect to this basis of $T^\prime$ and $T^{\prime\prime}$ that we encode and decode. Once the projection is reversed
 so that we are again on the diamond, normalizing the vector once again takes us to the unit circle (as
 with the octahedral decoding).
 
