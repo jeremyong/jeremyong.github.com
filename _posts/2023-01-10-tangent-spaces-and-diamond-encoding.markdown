@@ -115,6 +115,10 @@ Reed for the correction here from the original text). Note that we can choose th
 direction in an infinite number of ways (albeit far fewer sensible ways), but I'm just reproducing the
 top approach for consistency.
 
+*edit* As suggested by [Marc Reynolds](http://marc-b-reynolds.github.io/quaternions/2016/07/06/Orthonormal.html),
+there are a few other approaches linked to construct a canonical orthonormal basis, including [this](https://jcgt.org/published/0006/01/01/)
+elegant solution from *Pixar*.
+
 To reconstruct $T$ given $N$ and $\theta$, we need to determine $T^\prime$ using the same method as above,
 and then rotate $\theta$ radians about $N$ from $T^\prime$ using the [Rodrigues rotation formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula).
 As pointed out by the the DOOM presentation, the formula simplifies a bit since $T^\prime$ and $N$ are
