@@ -10,9 +10,6 @@ header_pages:
   - about.md
   - bookshelf.md
 
-# Google services
-google_analytics: UA-10576233-1
-
 # Optional features
 show_related_posts: true
 show_post_footers: true

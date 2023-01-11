@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 Hi. I'm a graphics programmer but with broader generalist capabilities also. C++ is my primary
-programming language, but I'm relatively language agnostic (except for a few languages on my naughty list).
+programming language, but I'm relatively language agnostic.
 
 I post sporadically, but feedback and/or corrections on my content is always appreciated (see link badges
 at the top to find me on twitter/linkedin/etc).
