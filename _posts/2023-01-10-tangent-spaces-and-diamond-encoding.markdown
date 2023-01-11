@@ -180,7 +180,7 @@ float encode_diamond(float2 p)
     // Contract the x coordinate by a factor of 4 to represent all 4 quadrants in
     // the unit range and remap
     float py_sign = sign(p.y);
-    return py_sign * 0.25f * x + 0.5f + py_sign * 0.25f;
+    return -py_sign * 0.25f * x + 0.5f + py_sign * 0.25f;
 }
 
 float2 decode_diamond(float p)
@@ -189,7 +189,7 @@ float2 decode_diamond(float p)
 
     // Remap p to the appropriate segment on the diamond
     float p_sign = sign(p - 0.5f);
-    v.x = p_sign * 4.f * p - 1.f - p_sign * 2.f;
+    v.x = -p_sign * 4.f * p + 1.f + p_sign * 2.f;
     v.y = p_sign * (1.f - abs(v.x));
 
     // Normalization extends the point on the diamond back to the unit circle
