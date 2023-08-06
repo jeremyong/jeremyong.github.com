@@ -55,7 +55,7 @@ multi-million LOC codebase I took no part in writing.
 This leads me to the next point about debuggers. Sometimes, things break in a way that no amount of code
 reading would predict. You pause the debugger, inspect a variable's value, then step and notice that the
 variable changed despite no code visibly altering the variable. Ah, this variable's memory must be aliased
-on a different thread. This is one scenario of countless scenarios where memory stomps, bad aliasing,
+on a different thread (or even on the same thread in a way that was non-obvious). This is one scenario of countless scenarios where memory stomps, bad aliasing,
 and other such issues would confound even the most astute reader. After identifying that one of these
 issues is at play though, _at that point_, a closer inspection is certainly warranted, armed with clues
 from debugger-land. I'm reminded of my time working in an electronics lab, where after hours of debugging
