@@ -17,7 +17,7 @@ These intrinsics are extremely useful in a variety of situations -- here are a c
 
 There is an unfortunate limitation with the interlocked intrinsics at the moment, however.
 Namely, while the interlocked intrinsics did gain [64-bit support](https://microsoft.github.io/DirectX-Specs/d3d/HLSL_SM_6_6_Int64_and_Float_Atomics.html#integer-64-bit-capabilities)
-and certain [certain float](https://microsoft.github.io/DirectX-Specs/d3d/HLSL_SM_6_6_Int64_and_Float_Atomics.html#interlockedcomparestorefloatbitwise)
+and [certain float](https://microsoft.github.io/DirectX-Specs/d3d/HLSL_SM_6_6_Int64_and_Float_Atomics.html#interlockedcomparestorefloatbitwise)
 atomic capabilities, we still can't use the general reduction intrinsics (add, min, max) with `Vector<float, N>` inputs (some of which have hardware support).
 For example, if you study the [RDNA2 ISA](https://www.amd.com/content/dam/amd/en/documents/radeon-tech-docs/instruction-set-architectures/rdna2-shader-instruction-set-architecture.pdf) (warning, big PDF),
 you will find instructions such as `BUFFER_ATOMIC_FMIN` among others (which come fully featured with NaN, INF, and denormal handling).
@@ -235,7 +235,9 @@ greater than or less than $\pm \infty$ are, in fact, NaN values that should be h
 Subnormals (also referred to as denormals) have no exponent bits set, and one or more fraction bits set.
 Thankfully, positive subnormals compare greater-than zero, and negative subnormals compare less-than zero as you would expect.
 Similarly, subnormals compare as you'd expect with the positive and negative normal numbers that are closest to zero after
-unsigned conversion. As with `1.#INF` and `-1.#INF`, no special handling of subnormals are needed.
+unsigned conversion. As with `1.#INF` and `-1.#INF`, no special handling of subnormals are needed. Note that if this
+behavior may not actually be observable in your shader if you've compiled with default settings that have enable FTZ
+(subnormal flush-to-zero).
 
 ### Signed zero
 
