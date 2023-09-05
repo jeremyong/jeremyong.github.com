@@ -13,7 +13,7 @@ or a location in an `RWByteAddressBuffer` (or some other `uint` or `int` typed-r
 These intrinsics are extremely useful in a variety of situations -- here are a couple common ones:
 
 - Incrementing a counter in order to allocate memory on the GPU (e.g. to implement order-independent transparency)
-- Summing a computed value across all invocations (e.g. to count the number of occurrences something occurs)
+- Summing a computed value across all invocations (e.g. to count the number of occurrences of an event)
 
 There is an unfortunate limitation with the interlocked intrinsics at the moment, however.
 Namely, while the interlocked intrinsics did gain [64-bit support](https://microsoft.github.io/DirectX-Specs/d3d/HLSL_SM_6_6_Int64_and_Float_Atomics.html#integer-64-bit-capabilities)
@@ -23,7 +23,7 @@ For example, if you study the [RDNA2 ISA](https://www.amd.com/content/dam/amd/en
 you will find instructions such as `BUFFER_ATOMIC_FMIN` among others (which come fully featured with NaN, INF, and denormal handling).
 
 While atomic `float` sums are understandably unavailable, it turns out there is a somewhat (well-?) known trick
-to perform atomic min and max reductions on floats.
+to perform atomic min and max reductions on floats. You would want this, for example, in order to compute the max or min luminance in a frame (among other useful quantities).
 
 ## The trick
 
@@ -252,6 +252,38 @@ quite true. That is, `-0.f` is _not_ strictly less than `+0.f` and vice versa, b
 is suddenly induced after our $U$ map is applied. I say this is unlikely to matter, however, because after we
 invert the mapping (applying $U^{-1}$), any ordering we temporarily imposed between positive and negative
 zero vanishes.
+
+## Performance
+
+The impact of the code is some overhead needed to perform the mapping. The cost of the inverse mapping is
+typically negligible, since this is only felt when we read the value back after the reduction has finished.
+In an ideal scenario, HLSL exposes the hardware intrinsic for atomic min/max directly, at which point the
+need for the mapping (and NaN check) goes away completely. Generally though, I haven't been able to measure
+the impact of this code because when you're shoving data into an atomic unit, you usually aren't ALU bound.
+
+As a bonus, here is the routine I use, which avoids the conditional branch in the code written above:
+
+```hlsl
+// Check isnan(value) before use.
+uint order_preserving_float_map(float value)
+{
+    // For negative values, the mask becomes 0xffffffff.
+    // For positive values, the mask becomes 0x80000000.
+    uint mask = -int(asuint(value) >> 31) | 0x80000000;
+    return value ^ mask;
+}
+
+float inverse_order_preserving_float_map(uint value)
+{
+    // If the msb is set, the mask becomes 0x80000000.
+    // If the msb is unset, the mask becomes 0xffffffff.
+    uint mask = ((value >> 31) - 1) | 0x80000000;
+    return asfloat(value ^ mask);
+}
+```
+
+You'll find code similar to the snippet above elsewhere. Here's a recent example mentioned by [Aras](https://mastodon.gamedev.place/@aras/111013246511298342)
+that uses the same trick to perform floating point [radix sorting](http://stereopsis.com/radix.html).
 
 ## Conclusion
 
