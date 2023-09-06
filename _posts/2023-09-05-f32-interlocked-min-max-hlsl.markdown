@@ -140,8 +140,8 @@ that $U(f_1) < U(f_2)$. To convince yourself that this is a sufficient condition
 following observations:
 
 1. We need the mapping to be a bijection so we can reverse the mapping later.
-2. If the relative order is preserved after the mapping, we know that $\textbf{min}(f_1, f_2)$ will
-   be equal to $\textbf{min}\left(U(f_1), U(f_2)\right)$. Similarly, the same relation will hold for the
+2. If the relative order is preserved after the mapping, we know that $\textbf{argmin}(f_1, f_2)$ will
+   be equal to $\textbf{argmin}\left(U(f_1), U(f_2)\right)$. Similarly, the same relation will hold for the
    `max` operation.
 
 Combining these two observations, we can write:
