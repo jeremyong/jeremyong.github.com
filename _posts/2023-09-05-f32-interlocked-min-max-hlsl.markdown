@@ -269,8 +269,9 @@ uint order_preserving_float_map(float value)
 {
     // For negative values, the mask becomes 0xffffffff.
     // For positive values, the mask becomes 0x80000000.
-    uint mask = -int(asuint(value) >> 31) | 0x80000000;
-    return value ^ mask;
+    uint uvalue = asuint(value);
+    uint mask = -int(uvalue >> 31) | 0x80000000;
+    return uvalue ^ mask;
 }
 
 float inverse_order_preserving_float_map(uint value)
