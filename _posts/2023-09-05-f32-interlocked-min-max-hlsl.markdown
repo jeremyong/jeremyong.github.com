@@ -212,7 +212,7 @@ That said, let's see what happens to NaN values under our mapping without any ch
 A NaN value has all exponent bits set (`0b11111111`) and a non-zero fraction.
 However, the sign bit may or may not be set depending. This means that by default, our mapping will has the unfortunate property
 that a NaN value _might_ propagate (i.e. compare greater-than or less-than other non-NaN values) depending on whether we are performing a min or max reduction. With this understanding,
-we can mitigate this problem by hanlding NaNs in one of the following ways:
+we can mitigate this problem by handling NaNs in one of the following ways:
 
 1. Do an `isnan` check of the input first, and skip the interlocked operation if a NaN is encountered.
 2. Do an `isnan` check of the input first, and then set or unset the sign bit to ensure the NaN propagates.
