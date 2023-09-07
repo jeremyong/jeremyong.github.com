@@ -18,7 +18,7 @@ These intrinsics are extremely useful in a variety of situations -- here are a c
 There is an unfortunate limitation with the interlocked intrinsics at the moment, however.
 Namely, while the interlocked intrinsics did gain [64-bit support](https://microsoft.github.io/DirectX-Specs/d3d/HLSL_SM_6_6_Int64_and_Float_Atomics.html#integer-64-bit-capabilities)
 and [certain float](https://microsoft.github.io/DirectX-Specs/d3d/HLSL_SM_6_6_Int64_and_Float_Atomics.html#interlockedcomparestorefloatbitwise)
-atomic capabilities, we still can't use the general reduction intrinsics (add, min, max) with `Vector<float, N>` inputs (some of which have hardware support).
+atomic capabilities, we still can't use the general reduction intrinsics (add, min, max) with `vector<float, N>` inputs (some of which have hardware support).
 For example, if you study the [RDNA2 ISA](https://www.amd.com/content/dam/amd/en/documents/radeon-tech-docs/instruction-set-architectures/rdna2-shader-instruction-set-architecture.pdf) (warning, big PDF),
 you will find instructions such as `BUFFER_ATOMIC_FMIN` among others (which come fully featured with NaN, INF, and denormal handling).
 
@@ -127,7 +127,7 @@ If all you want to do is apply the trick, you could probably stop reading here a
 to your own code. But I recommend you read further to convince yourself that it works, as well as
 consider how "special" float values are handled.
 
-This code is available for experimentation [here on CompilerExplorer](https://hlsl.godbolt.org/z/75455TK96).
+This code is available for experimentation [here on Compiler Explorer](https://hlsl.godbolt.org/z/7hz47f6Pq).
 
 ## Why does this work?
 
