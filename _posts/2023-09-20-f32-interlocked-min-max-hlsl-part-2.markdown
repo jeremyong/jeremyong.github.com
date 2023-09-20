@@ -175,6 +175,8 @@ unfortunately, all numeric literals in HLSL without a numeric suffix are represe
 No available suffix produced the widest _signed_ type possible. This is in contrast to C, where literals without a suffix are interpreted as a signed numeric value.
 As a result, with the two parameter overload of `RWByteAddressBuffer::InterlockedMin` (and other similar methods), there is no way to specify the
 signed overload without either a direct cast (e.g. `buffer.InterlockedMin(0, (int)1)`), or by declaring the value as a separate explicitly typed signed variable (as in `buffer.InterlockedMin(0, value)`).
+The reason `buffer.InterlockedMin(0, -1)` selects the signed overload is because there is no unsigned type that can contain `-1`, so in a sense, only negative
+signed values can be represented by numeric literals.
 
 Furthermore, in the second set of examples with the `original` parameter, note that even though `original` is typed as a signed integer, the type of `original` seems
 to not participate in overload resolution at all. In my opinion, the overload selection would ideally constrain the types of `value` and `original` to be the same (and throw a compiler error otherwise),
