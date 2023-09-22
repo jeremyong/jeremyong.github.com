@@ -293,6 +293,6 @@ My personal hope is that this trick will be obsolete, as modern GPU hardware can
 natively, without any cost needed to do the mapping described here. That said, for the time being, this
 trick is really useful, and the underlying concept is fairly easy to understand also.
 
-From here, feel free to read [part 2](/graphics/2023/09/05/f32-interlocked-min-max-hlsl/), where we discuss
+From here, feel free to read [part 2](/graphics/2023/09/20/f32-interlocked-min-max-hlsl-part-2), where we discuss
 an alternative to this approach using signed interlocked operations instead, and discuss other floating point
 formats also.

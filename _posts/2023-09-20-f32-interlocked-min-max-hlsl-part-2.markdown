@@ -33,8 +33,9 @@ To see this, here's the binary representation of a single precision float (as we
 *(image reproduced from [wikipedia's IEEE 754 binary32 article](https://en.wikipedia.org/wiki/Single-precision_floating-point_format))*
 
 The smallest negative value possible ($-\infty$ or `-1.#INF`) has all bits set except for the fraction bits (setting all exponent bits
-and any fraction bits produces a `NaN`). In contrast, the negative number closest to zero has the sign bit and least-significant bits
-set. 
+and any fraction bits produces a `NaN`). In contrast, the negative number closest to zero has the sign bit and least-significant bit
+set. Put another way, signed ints wrap at 0x7fffffff, with the next increment producing `INT_MIN`. Floats on the other hand _do not wrap_
+in the same way, and after `1.#INF`, the next non-nan number isn't `-1.#INF`, but `-0.f` instead.
 
 In practice, what this means is the following:
 
