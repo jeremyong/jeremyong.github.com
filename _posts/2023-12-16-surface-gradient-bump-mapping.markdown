@@ -356,7 +356,7 @@ $$
 $$
 
 Note that I've switched to the shorthand form of the partial derivative for brevity.
-A fact from multivariable calculus lets us write:
+A fact from multivariable calculus (given by the [Inverse Function Theorem](https://en.wikipedia.org/wiki/Inverse_function_theorem)) lets us write:
 
 $$
 \begin{aligned}
