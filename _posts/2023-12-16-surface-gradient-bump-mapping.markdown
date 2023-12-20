@@ -341,7 +341,7 @@ $$
 $$
 
 At this point, however, we still don't have this in a form where `ddx` and `ddy` are immediately usable.
-You may be tempted to take the reciprocals of `ddx(uv).x` and `ddy(uv).x` to be the partials of $s_x$ and $s_y$
+You may be tempted to take the reciprocals of `ddx(uv).x` and `ddy(uv).x` to be the partials of $x$ and $y$
 with respect to $u$, but this would be _incorrect_ here (it's true in the 1-dimensional case, or when the variables are independent).
 The "inverse" partials must be computed by computing the inverse of the Jacobian matrix.
 
