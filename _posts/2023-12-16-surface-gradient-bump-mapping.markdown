@@ -400,11 +400,13 @@ $$
 \end{aligned}
 $$
 
-Substituting for our equation for $\BF t$:
+Substituting these quantities into our equation for $\BF t$:
 
 $$
 \begin{aligned}
-\BF{t} &= \frac{\partial x}{\partial u}\textrm{proj}_S\left(\frac{\partial \BF{p}}{\partial x}\right) + \frac{\partial y}{\partial u}\textrm{proj}_S\left(\frac{\partial \BF{p}}{\partial y}\right) \\
+\BF{t} &= \left(\partial_u x\right)
+\textrm{proj}_S\left(\partial_x \BF{p}\right)
++ \left(\partial_u y\right)\textrm{proj}_S\left(\partial_y \BF{p}\right) \\
 &=\frac
 {\left(\partial_y v\right) \left(\textrm{proj}_S\left(\partial_x \BF p\right)\right)
 - \left(\partial_y u\right) \left(\textrm{proj}_S\left(\partial_y \BF p\right)\right)
@@ -418,10 +420,13 @@ we can carefully drop scalar multipliers _but not sign changes_ prior to the nor
 This gives us our final expression for the normalized tangent vector:
 
 $$
-\hat\BF{t} = \textrm{sign}\left(\left|\BF J\right|\right)\left[\left(\partial_y v\right)\textrm{proj}_S\left(\partial_x \BF p\right)
-- \left(\partial_y u\right)\textrm{proj}_S\left(\partial_y \BF p\right)\right]
+\begin{aligned}
+\hat\BF{t} = \textrm{normalize}\left[\textrm{sign}\left|\BF J\right|\left[\left(\partial_y v\right)\textrm{proj}_S\left(\partial_x \BF p\right)
+- \left(\partial_y u\right)\textrm{proj}_S\left(\partial_y \BF p\right)\right]\right]
+\end{aligned}
 $$
 
+Here, $\left|\BF J\right|$ is the Jacobian itself (aka, the determinant of the Jacobian matrix).
 In HLSL code, we could express this like so:
 
 ```hlsl
