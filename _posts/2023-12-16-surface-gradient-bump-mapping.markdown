@@ -422,7 +422,7 @@ $$
 - \left(\partial_y u\right)\textrm{proj}_S\left(\partial_y \BF p\right)\right]
 $$
 
-In HLSL code, we would express this like so:
+In HLSL code, we could express this like so:
 
 ```hlsl
 struct TangentFrame
@@ -579,6 +579,7 @@ Some of these details include:
 - How do we account for scale-dependent tiling?
 - How do we compute surface gradients given a height map?
 - How do we compute surface gradients in the case of parallax occlusion mapping?
+- How can we make additional perturbations to a post-resolved normal?
 
 The last two items in particular, I encourage you to work through on your own, as it's a nice test of your
 ability to reorient your thinking around "height gradients" as opposed to strictly normals.
