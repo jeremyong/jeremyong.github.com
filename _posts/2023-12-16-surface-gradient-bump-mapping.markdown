@@ -128,6 +128,10 @@ a baked normal map (pictured right),
   <img src="/images/sg/quinn_normals.png" width="40%" alt="Mannequin normal map" />
 </p>
 
+_NOTE: The textures used for this mesh are technically incorrect and created for a different
+mesh altogether, but I didn't notice while writing this post because I didn't know what it was "supposed"
+to look like. Apologies to the artist!_
+
 As with object-space normal maps, in this example, the normal is sampled at each pixel.
 The difference is the normal sampled in this way cannot be used directly, and must be first transformed
 into the tangent space of the surface containing the pixel. This transformation may be encoded
