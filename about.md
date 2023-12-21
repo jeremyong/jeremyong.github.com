@@ -4,11 +4,9 @@ title: About
 permalink: /about/
 ---
 
-Hi. I'm a graphics programmer but with broader generalist capabilities also. C++ is my primary
-programming language, but I'm relatively language agnostic.
+Hi. I'm a graphics and game engine programmer but with broader generalist capabilities also.
+Views expressed on this site are my own, and do not reflect the views of my employer.
+All code snippets found on this site are free to use under the [MIT License](https://opensource.org/license/mit/).
 
-I post sporadically, but feedback and/or corrections on my content is always appreciated (see link badges
+Feedback and/or corrections on my content is always appreciated (see link badges
 at the top to find me on twitter/linkedin/etc).
-
-If you're curious of the origin of the name "ninepoints," it's a reference to [Euler's nine point circle theorem](https://en.wikipedia.org/wiki/Nine-point_circle)
-which is one of my favorite theorems.
