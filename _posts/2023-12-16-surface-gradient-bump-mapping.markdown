@@ -471,7 +471,7 @@ TangentFrame compute_tbn(in float3 p, in float3 n, in float2 uv)
   // The second factor here ensures a consistent handedness between
   // the tangent frame and surface basis w.r.t. screenspace.
   frame.b = jacobian_sign *
-    dot(dpdy, cross(n, dpdx)) *
+    sign(dot(dpdy, cross(n, dpdx))) *
     cross(n, frame.t);
 
   frame.n = n;
