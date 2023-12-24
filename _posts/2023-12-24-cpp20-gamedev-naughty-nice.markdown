@@ -61,8 +61,8 @@ struct Date
     int month;
     int day;
 
-    auto operator<=>(Date const&, Date const&) = default;
-    bool operator==(Date const&, Date const&)  = default;
+    auto operator<=>(Date const&) const = default;
+    bool operator==(Date const&) const  = default;
 };
 ```
 
