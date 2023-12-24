@@ -2,10 +2,10 @@
 title: Jeremy's Blog
 email: jeremycong@gmail.com
 author: Jeremy Ong
-description: 'C++, graphics, Vulkan, DirectX, Math, compilers, and more'
-baseurl: ''
-url: 'https://jeremyong.com'
-date_format: '%b %-d, %Y'
+description: "A blog about game engines, graphics, C++, and more."
+baseurl: ""
+url: "https://jeremyong.com"
+date_format: "%b %-d, %Y"
 header_pages:
   - about.md
   - bookshelf.md
@@ -18,16 +18,15 @@ ajaxify_contact_form: true
 
 # Social icons
 github_username: jeremyong
-twitter_username: m_ninepoints
 linkedin_username: jeremycong
 
 text:
-  og_locale: 'en_US'
+  og_locale: "en_US"
 
 # Build settings
 markdown: kramdown
 redcarpet:
-  extensions: ['smart', 'tables', 'with_toc_data']
+  extensions: ["smart", "tables", "with_toc_data"]
 permalink: pretty
 paginate: 4
 sass:
