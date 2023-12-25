@@ -150,6 +150,51 @@ to convince me to use STL containers anytime soon (for other reasons I won't get
 of `std::span` as a pointer plus size is unobjectionable enough and easy-to-use (interoperability with functions
 that take iterator pairs, range for-loops, etc.).
 
+## (Nice-ish) Designated initializers
+
+[Designated initializers](https://en.cppreference.com/w/cpp/language/aggregate_initialization#Designated_initializers) are
+a new form of initialization that initializes structured variable members by name.
+
+```c++
+struct Point
+{
+    float x;
+    float y;
+    float z;
+};
+
+Point origin{.x = 0.f, .y = 0.f, .z = 0.f};
+```
+
+I consider this feature "nice-ish." On the one hand, the feature allows us to initialize structured variables in
+a self-documenting manner, and I'm always a fan of optimizing for the reader. However, the main caveat regarding
+designated initializer usage is that initialized members _must_ appear in declaration order. In other words,
+this code won't compile:
+
+```c++
+struct Point
+{
+    float x;
+    float y;
+    float z;
+};
+
+// Oops, field order is incorrect.
+Point origin{.y = 0.f, .z = 0.f, .x = 0.f};
+```
+
+This behavior makes sense for structured types with non-trivial layout, but feels unnecessarily restrictive
+for POD types. I often work with types that have dozens of fields or more, so honoring the initialization
+order to match the original declaration is quite tedious indeed. Furthermore, in game dev, we often move
+structure fields around in order to optimize layout (coalescing hot data in cache lines, promoting true
+sharing, avoiding false sharing). This type of optimization can't be done without cascading into compilation
+failures throughout the codebase. As a result, designated initializers have the paradoxical effect of making a
+codebase _less maintainable_ in a sense.
+
+This one is still _barely_ in the nice category because it does make life better for the reader (who we
+all prioritize over the writer), but I do hope that restriction is relaxed for trivial types some day. Flexibility
+with ordering was the entire point of the "named parameters" feature in many other languages after all.
+
 ## (Naughty) char8_t
 
 MSVC added `/Zc:char8_t-` to disable this type entirely, and GCC did the same.
