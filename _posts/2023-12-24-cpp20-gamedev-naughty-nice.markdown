@@ -85,9 +85,9 @@ may be faster than invoking `operator<=>` to do equality checks.
 
 ## (Nice) Signed integers are 2's complement and arithmetic shifts
 
-Signed overflow/underflow remain UB (and it's understandable that changing this behavior would have
-dramatic consequences), but it's nice to know that we can at least expect sign extension when using
-`operator>>` and `operator<<` on signed operands now.
+Signed overflow/underflow remain UB (and it's understandable that changing this behavior this late
+in the game would have dramatic consequences), but it's nice to know that we can at least expect
+sign extension when using `operator>>` and `operator<<` on signed operands now.
 
 ## (Nice) Coroutines (with heavy caveats)
 
