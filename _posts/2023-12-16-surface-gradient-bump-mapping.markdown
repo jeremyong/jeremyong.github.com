@@ -451,8 +451,8 @@ TangentFrame compute_tbn(in float3 p, in float3 n, in float2 uv)
   float3 dpdy = ddy(p);
 
   // Project the position gradients onto the tangent plane
-  float3 dpdx_s = dpdx - dot(dpdx, n);
-  float3 dpdy_s = dpdy - dot(dpdy, n);
+  float3 dpdx_s = dpdx - dot(dpdx, n) * n;
+  float3 dpdy_s = dpdy - dot(dpdy, n) * n;
 
   // Compute the jacobian matrix to leverage the chain rule
   float2 duvdx = ddx(uv);
