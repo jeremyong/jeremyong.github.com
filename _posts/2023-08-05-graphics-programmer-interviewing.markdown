@@ -3,8 +3,8 @@ layout: post
 title: Interviewing Graphics Programmers
 date: 2023-08-05 00:00
 categories:
-- Graphics
-- Interviewing
+  - Graphics
+  - Interviewing
 ---
 
 This is a light brain dump intended to describe the interviewing process as it pertains to graphics programmers (including prospective ones).
@@ -165,7 +165,7 @@ of individuals of varying backgrounds helps. That said, if you have ideas on thi
 ## General advice for candidates
 
 As seen above, interviewers in this field should not expect exhaustive knowledge of all things graphics. Good graphics programming interviews are,
-in my opinion, somewhat flexible because the graphics programming is a broad discipline, and achieving a good signal from an interview demands that
+in my opinion, somewhat flexible because graphics programming is a broad discipline, and achieving a good signal from an interview demands that
 flexibility. Prior to going into an interview, I highly recommend the following:
 
 - Being clear about what you've worked on or studied
@@ -173,6 +173,7 @@ flexibility. Prior to going into an interview, I highly recommend the following:
 - Reviewing your prior work and experiences so you can easily converse about the problems you've solved, and how you solved it
 
 The first two items are mainly to aid the hiring manager understand how best to assess that you're a good fit for the role.
+The resume and cover letter are great places to add this type of information, and it makes sense to tailor both for each role you apply to.
 The last item is a good general interview preparation tip, especially so for graphics because talking about prior experience is sometimes the
 only real way to evaluate a person's understanding of a topic.
 
