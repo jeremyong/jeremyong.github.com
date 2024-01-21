@@ -19,6 +19,7 @@ ajaxify_contact_form: true
 # Social icons
 github_username: jeremyong
 linkedin_username: jeremycong
+buymeacoffee_username: jeremyong
 
 text:
   og_locale: "en_US"
