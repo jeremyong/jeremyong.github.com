@@ -3,20 +3,22 @@ layout: default
 ---
 <div class="posts">
   {% for post in site.posts %}
-  <div class="post">
-    <div class="post-row">
-      <p class="post-title">
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-      </p>
-      <p class="post-date">
-        {{ post.date | date: "%b %-d, %Y" }}
-      </p>
-    </div>
-    {% if post.summary %}
-    <p class="post-subtitle">
-      {{ post.summary }}
-    </p>
-    {% endif %}
-  </div>
+  {% if post.draft != true %}
+      <div class="post">
+        <div class="post-row">
+          <p class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          </p>
+          <p class="post-date">
+            {{ post.date | date: "%b %-d, %Y" }}
+          </p>
+        </div>
+        {% if post.summary %}
+        <p class="post-subtitle">
+          {{ post.summary }}
+        </p>
+        {% endif %}
+      </div>
+      {% endif %}
   {% endfor %}
 </div>
