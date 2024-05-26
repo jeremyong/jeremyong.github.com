@@ -212,6 +212,8 @@ In reality, you can pursue both methods concurrently, in accordance to your inte
 To see some examples of projects that resemble a slice of what a "real game renderer" might look like,
 you can check out the MSFT [MiniEngine](https://github.com/microsoft/DirectX-Graphics-Samples/tree/master/MiniEngine),
 AMD's [Cauldron](https://gpuopen.com/cauldron-framework/), or NVIDIA's [Falcor](https://developer.nvidia.com/falcor).
+Whatever path you choose, I definitely recommend you pick projects and technology to work with that you
+find personally motivating. Consistency over the long run will pay dividends.
 
 ### Aside: Which API and shading language?
 
@@ -231,8 +233,9 @@ If you use a Mac, use Metal. In my specific segment of the industry, note that t
 graphics programmers is very small relative to Windows and console programmers.
 
 (Warning, strong opinions follow). With respect to shading languages, I think GLSL is a dead shading language
-(and OpenGL is a dying/dead API).  I've used both professionally, and while they served important roles at
-various times in history, you are much better off sticking to HLSL and DX12/VK in my opinion.
+(and OpenGL is a dying/dead API in the sense that nobody in my corner of the industry ships this anymore). 
+I've used both professionally, and while they served important roles at various times in history, you are much
+better off sticking to HLSL and DX12/VK in my opinion.
 
 Regardless of what API and shader language you choose, however, you _will_ learn and use more APIs in time,
 so don't sweat your initial choices too much. What's more important is gaining an appreciation of the
@@ -369,7 +372,7 @@ applicants.
 Regardless of which studios you apply for however, a common experience among graphics engineers is
 the rather large upfront investment in time needed to accrue enough relevant experience. Much of what
 I've talked about thus far isn't really covered in schools, unless you happened to major in computer
-graphics or game programminng at a university that covered such topics.
+graphics or game programming at a university that covered such topics.
 
 ## Should I get into the games industry?
 
@@ -428,6 +431,10 @@ for me, and there are very few roles that are like it. I encourage newcomers to 
 spend too much time being intimidated. Be patient with yourself, disciplined, and consistent. The payoff
 of delighting users and empowering artists will come with time, and in my opinion at least, is well worth
 the effort.
+
+As everyone's learning style and interests are different, feel free to take a gander at this post's
+associated [thread on Mastodon](https://mastodon.gamedev.place/@ninepoints/112506444647928746) for other
+opinions, feedback, and comments. Feel free to comment yourself if you have advice to share with others!
 
 _Special thanks also to Alex Tardiff, Niklas Lundberg, Matthäus Chajdas, Johan Andersson, Nathan Reed, and
 Matt Pettineo for their input as I was drafting this post._
