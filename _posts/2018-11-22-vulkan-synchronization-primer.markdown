@@ -210,19 +210,19 @@ the framebuffer to the presentation queue.
 
 Other times, we need a finer grained form of synchronization. The most common
 examples of this are a transfer job to submit buffers or images to the GPU that
-get consumed later by the graphics queue. Alternatively, we might have interdependencies
-between the graphics queue and the compute queue or vice-versa. Luckily, encoding
-this information is not so difficult as we have two memory barrier types for dealing
-with these cases specifically: the `VkBufferMemoryBarrier` and `VkImageMemoryBarrier`.
-Both of these structures contain member fields to encode the source and destination
-queue families. These barriers can also be used usefully on a single queue since they
-let you encode a barrier on a sub-region of either the buffer or image, or an image
-format transition in addition to every thing else in the case of an image barrier.
-When used to describe a queue transfer however, these barriers need to be submitted
-to _both queues_ with the source and destination queue reversed. Depending on the
-queue they are submitted to, the barriers define a release or consume dependency
+get consumed later by the graphics queue. When releasing and acquiring resources
+across queues in this way, we _also_ need a semaphore of some sort to sequence the
+acquisition to occur _after_ the release.  Luckily, encoding the acquisitions and releases
+is not so difficult with the two memory barrier types we have: the `VkBufferMemoryBarrier`
+and `VkImageMemoryBarrier`. Both of these structures contain member fields to encode the
+source and destination queue families. These barriers can also be used usefully on a single
+queue since they let you encode a barrier on a sub-region of either the buffer or image,
+or an image format transition in addition to every thing else in the case of an image
+barrier.  When used to describe a queue transfer however, these barriers need to be
+submitted to _both queues_ with the source and destination queue reversed. Depending
+on the queue they are submitted to, the barriers define a release or consume dependency
 between the queues. Another difference is that when these barriers are used to describe
-a queue ownership transfer, when a _release_ is defined, the `dstStageMask` is ignored -
+a queue ownership transfer, when a _release_ is defined, the `dstStageMask` is ignored --
 after all, the commands submitted afterwards in the _same queue_ do not care about
 the barrier. Similarly, the `srcStageMask` is ignored in the consume operation on the
 other side for an analogous reason.
