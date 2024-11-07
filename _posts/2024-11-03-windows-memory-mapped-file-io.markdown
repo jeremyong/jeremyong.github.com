@@ -73,6 +73,7 @@ char const* data = (char const*)MapViewOfFile(
 
 // When we are done, closing the file mapping handle releases the file for use
 // by other applications.
+NtUnmapViewOfSection(GetCurrentProcess(), data)
 CloseHandle(file_mapping_handle);
 ```
 
@@ -146,7 +147,11 @@ async IO threads which function identically on multiple platforms. The exception
 is the case where we actually want to incur more concurrent page faults than we
 have active threads in the system. Non-desktop platforms have specific APIs that
 help manage this, and on Windows, `DirectStorage` and `PrefetchVirtualMemory` are
-options to consider.
+options to consider. In the majority case, I don't expect that disk bandwidth is
+the bottleneck (in cases where you actually need to process the data), but for
+certain workloads where data is blasted from one location to another with minimal
+processing (diffing, patching, compression, texture streaming, etc.), you may
+want to consider non-memory-mapped IO.
 
 Another issue is that, compared to `WriteFile`, there is no easy way to track
 precisely when mutations to a file are made. Aside from not having a place in
@@ -155,6 +160,16 @@ a file are typically cached and flushed at some indeterminant point in the
 future unless a manual `FlushViewOfFile` is issued. Because order isn't
 guaranteed, some care is needed if you need the data on disk to be internally
 consistent.
+
+Working with remote files is also somewhat dicey with memory-mapped IO. Calls
+to `ReadFile` and `WriteFall` will return a nice clean error code if the remote
+host dropped mid-operation. When memory mapping a remote file though, you'll
+encounter a structured exception instead. In this case, passing a pointer to
+mapped network storage is quite risky, since it's not obvious that accessing
+that memory needs to happen in the context of a structured exception handler.
+For networked storage also, I suggest a dedicated abstraction that either
+exposes the memory mapped data through an interface with proper exception
+handling, or to forego the use of memory-mapped I/O altogether.
 
 Another disadvantage is the handling of file resizing. With documented APIs,
 the user must:
@@ -407,7 +422,10 @@ immediately committing it. We could pass `SEC_COMMIT` here if we wanted. This
 would have the effect of immediately allocating storage in physical memory
 when we map the view in the next step. This would have the disadvantage of
 throwing off our memory accounting, and also incurring more commit overhead
-than would be strictly needed.
+than would be strictly needed. It's worth mentioning that the non-Nt functions
+actually accept `SEC_RESERVE` also, but this flag is ignored for mappings backed
+by files (they only work with mappings assigned to the page file, for reasons
+I don't understand).
 
 With the memory section created backed by the file handle, we can now close the
 file handle and map the section.
@@ -447,6 +465,11 @@ initial mapping, we opt to initially commit memory based on the file size.
 Importantly, we pass `MEM_RESERVE` as the allocation type. This way, even though
 we opted to map 32 GiB of data, we aren't also committing it. This mirrors the
 use of the `SEC_RESERVE` flag we passed to `NtCreateSection`.
+
+In terms of overhead, assuming you aren't targeting Windows 7 and below,
+reserving a large address range doesn't incur a big penalty, because page table
+entries are reserved hierarchically. Raymond Chen covers this a bit in [this
+post](https://devblogs.microsoft.com/oldnewthing/20160701-00/?p=93785).
 
 Let's suppose we now want to write data to the file. First, we'd have to resize
 it.
@@ -637,6 +660,11 @@ impact performance in a way that's unacceptable for your code, you're better off
 reasoning about how to manage your memory access patterns accordingly, irrespective
 of the I/O approach taken.
 
+Finally, as mentioned in an earlier section, you will want to detect if the file created
+lives on a networked storage device, at which point you should either report an
+error, or fallback to an interface that properly handles exceptions that will
+be thrown on memory access if the storage device is lost.
+
 ## Concurrent page faults
 
 A legitimate problem here is the case where you need to read from or write to many
@@ -662,22 +690,29 @@ All that said, I actually consider this use case to be more niche, and anything
 but the common path. For the most part, sticking to sequential processing and
 relying on built-in caching behaviors gets you very far. Exotic use cases requiring
 tons of random access across a very large dataset are a difficult beast to wrangle,
-memory-mapping or otherwise.
+memory-mapping or otherwise. For specific workloads where data processing is
+minimal (e.g. texture streaming), you don't benefit as much from the memory-mapped
+semantics anyways, so consider normal overlapped I/O or other APIs for these
+types of workloads.
 
 ## Conclusion
 
 I think the main takeaways are:
 
-- `ReadFile` and `WriteFile` are clunky to use, require an extra in-memory buffer,
+- `ReadFile` and `WriteFile` can be clunky to use, require an extra in-memory buffer,
   and incur more overhead in the typical case.
 - Aside from specific async workloads, memory-mapping is far more convenient to
   work with, although undocumented APIs are needed to expose file-resizing
   functionality.
 - For async work, faulting on background/worker threads is often "good enough",
   especially paired with sequential access and manual prefetching.
-- If you somehow need even more bleeding-edge performance than that, you probably
-  live in a world where you'd want to reach for dedicated APIs that interface
-  with the storage driver and kernel IO routines in other ways.
+- If your workload is strictly I/O-bound, memory-mapping might not be the best
+  fit, but you should consider exposing dedicated streaming APIs for this set
+  of use cases.
+- Code with potential write-loss in mind, regardless of whether you choose to
+  memory-map your data or otherwise. Consider staging writes in temporary files,
+  and plan for error detection and data recovery, as opposed to working harder
+  to ensure writes are never lost.
 
 Hopefully, the notes in this post are helpful in constructing your perfect `File`
 abstraction, which accommodates the majority of use cases (at least on Windows).
